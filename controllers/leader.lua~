@@ -1,0 +1,27 @@
+local redis = require "redis"
+local client = redis.connect('127.0.0.1', 6379)
+
+client:zadd('board',10,'ad1')
+client:zadd('board',15,'ad2')
+client:zadd('board',18,'ad3')
+client:zadd('board',14,'ad4')
+client:zadd('board',3,'ad5')
+client:zadd('board',80,'ad6')
+client:zadd('board',100,'ad7')
+client:zadd('board',1,'ad8')
+client:zadd('board',16,'ad9')
+
+local t = client:zrevrange('board',0,4)
+print("abc")
+for _,v in ipairs(t) do
+	print(v)
+end
+
+local board = {}
+
+function board.index(page)
+  local t = client:zrevrange('board',0,4)
+  page:render('index', { top = t })
+end
+
+return board

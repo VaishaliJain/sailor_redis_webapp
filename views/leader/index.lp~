@@ -1,0 +1,10 @@
+<?lua 
+for k,v in ipairs(top) do
+	page:print(v.." "..k.."        ")
+end
+?>
+<?lua
+for k,v in ipairs(top) do ?>
+<%= k %>  <%=v%>
+</br>
+<?lua end ?>
